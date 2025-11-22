@@ -1,0 +1,130 @@
+dbug: 08-11-2025 17:29:33.908 CoreEventId.ContextInitialized[10403] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      Entity Framework Core 9.0.10 initialized 'CompanyContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.10' with options: EngineType=SqlServer 
+dbug: 08-11-2025 17:29:33.998 CoreEventId.QueryCompilationStarting[10111] (Microsoft.EntityFrameworkCore.Query) 
+      Compiling query expression: 
+      'DbSet<Employee>()'
+dbug: 08-11-2025 17:29:34.400 CoreEventId.QueryExecutionPlanned[10107] (Microsoft.EntityFrameworkCore.Query) 
+      Generated query execution expression: 
+      'queryContext => SingleQueryingEnumerable.Create<Employee>(
+          relationalQueryContext: (RelationalQueryContext)queryContext, 
+          relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+              Projection Mapping:
+                  EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Employee.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Employee.Company (string) Required, 1], [Property: Employee.Designation (string) Required, 2], [Property: Employee.Name (string) Required, 3] }
+              SELECT e.Id, e.Company, e.Designation, e.Name
+              FROM Employee AS e) | Resolver: c => new RelationalCommandCache(
+              c.Dependencies.MemoryCache, 
+              c.RelationalDependencies.QuerySqlGeneratorFactory, 
+              c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+              Projection Mapping:
+                  EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Employee.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Employee.Company (string) Required, 1], [Property: Employee.Designation (string) Required, 2], [Property: Employee.Name (string) Required, 3] }
+              SELECT e.Id, e.Company, e.Designation, e.Name
+              FROM Employee AS e, 
+              False, 
+              new HashSet<string>(
+                  new string[]{ }, 
+                  StringComparer.Ordinal
+              )
+          )].GetRelationalCommandTemplate(parameters), 
+          readerColumns: null, 
+          shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+          {
+              Employee entity;
+              entity = 
+              {
+                  MaterializationContext materializationContext1;
+                  IEntityType entityType1;
+                  Employee instance1;
+                  InternalEntityEntry entry1;
+                  bool hasNullKey1;
+                  materializationContext1 = new MaterializationContext(
+                      [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                      queryContext.Context
+                  );
+                  instance1 = default(Employee);
+                  entry1 = queryContext.TryGetEntry(
+                      key: [LIFTABLE Constant: Key: Employee.Id PK | Resolver: c => c.Dependencies.Model.FindEntityType("EFCoreLogging.Models.Employee").FindPrimaryKey()], 
+                      keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                      throwOnNullKey: True, 
+                      hasNullKey: hasNullKey1);
+                  !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+                  {
+                      entityType1 = entry1.EntityType;
+                      return instance1 = (Employee)entry1.Entity;
+                  } : 
+                  {
+                      ISnapshot shadowSnapshot1;
+                      shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                      entityType1 = [LIFTABLE Constant: EntityType: Employee | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("EFCoreLogging.Models.Employee")];
+                      instance1 = switch (entityType1)
+                      {
+                          case [LIFTABLE Constant: EntityType: Employee | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("EFCoreLogging.Models.Employee")]: 
+                              {
+                                  return 
+                                  {
+                                      Employee instance;
+                                      instance = new Employee();
+                                      instance.<Id>k__BackingField = dataReader.GetInt32(0);
+                                      instance.<Company>k__BackingField = dataReader.GetString(1);
+                                      instance.<Designation>k__BackingField = dataReader.GetString(2);
+                                      instance.<Name>k__BackingField = dataReader.GetString(3);
+                                      (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                          context: materializationContext1.Context, 
+                                          entity: instance, 
+                                          queryTrackingBehavior: TrackAll, 
+                                          structuralType: [LIFTABLE Constant: EntityType: Employee | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("EFCoreLogging.Models.Employee")]) : default(void);
+                                      return instance;
+                                  }}
+                          default: 
+                              default(Employee)
+                      }
+                      ;
+                      entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                          entityType: entityType1, 
+                          entity: instance1, 
+                          snapshot: shadowSnapshot1);
+                      return instance1;
+                  } : default(void);
+                  return instance1;
+              };
+              return entity;
+          }, 
+          contextType: EFCoreLogging.Models.CompanyContext, 
+          standAloneStateManager: False, 
+          detailedErrorsEnabled: False, 
+          threadSafetyChecksEnabled: True)'
+dbug: 08-11-2025 17:29:34.455 RelationalEventId.ConnectionCreating[20005] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Creating DbConnection.
+dbug: 08-11-2025 17:29:34.498 RelationalEventId.ConnectionCreated[20006] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Created DbConnection. (38ms).
+dbug: 08-11-2025 17:29:34.502 RelationalEventId.ConnectionOpening[20000] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opening connection to database 'EFCoreLogging' on server '(localdb)\MSSQLLocalDB'.
+dbug: 08-11-2025 17:29:35.715 RelationalEventId.ConnectionOpened[20001] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Opened connection to database 'EFCoreLogging' on server '(localdb)\MSSQLLocalDB'.
+dbug: 08-11-2025 17:29:35.721 RelationalEventId.CommandCreating[20103] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Creating DbCommand for 'ExecuteReader'.
+dbug: 08-11-2025 17:29:35.732 RelationalEventId.CommandCreated[20104] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Created DbCommand for 'ExecuteReader' (8ms).
+dbug: 08-11-2025 17:29:35.736 RelationalEventId.CommandInitialized[20106] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Initialized DbCommand for 'ExecuteReader' (17ms).
+dbug: 08-11-2025 17:29:35.748 RelationalEventId.CommandExecuting[20100] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executing DbCommand [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Company], [e].[Designation], [e].[Name]
+      FROM [Employee] AS [e]
+info: 08-11-2025 17:29:35.795 RelationalEventId.CommandExecuted[20101] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Executed DbCommand (43ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+      SELECT [e].[Id], [e].[Company], [e].[Designation], [e].[Name]
+      FROM [Employee] AS [e]
+dbug: 08-11-2025 17:29:35.804 RelationalEventId.DataReaderClosing[20301] (Microsoft.EntityFrameworkCore.Database.Command) 
+      Closing data reader to 'EFCoreLogging' on server '(localdb)\MSSQLLocalDB'.
+dbug: 08-11-2025 17:29:35.811 RelationalEventId.DataReaderDisposing[20300] (Microsoft.EntityFrameworkCore.Database.Command) 
+      A data reader for 'EFCoreLogging' on server '(localdb)\MSSQLLocalDB' is being disposed after spending 10ms reading results.
+dbug: 08-11-2025 17:29:35.814 RelationalEventId.ConnectionClosing[20002] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closing connection to database 'EFCoreLogging' on server '(localdb)\MSSQLLocalDB'.
+dbug: 08-11-2025 17:29:35.822 RelationalEventId.ConnectionClosed[20003] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Closed connection to database 'EFCoreLogging' on server '(localdb)\MSSQLLocalDB' (7ms).
+dbug: 08-11-2025 17:29:35.828 CoreEventId.ContextDisposed[10407] (Microsoft.EntityFrameworkCore.Infrastructure) 
+      'CompanyContext' disposed.
+dbug: 08-11-2025 17:29:35.836 RelationalEventId.ConnectionDisposing[20007] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Disposing connection to database 'EFCoreLogging' on server '(localdb)\MSSQLLocalDB'.
+dbug: 08-11-2025 17:29:35.842 RelationalEventId.ConnectionDisposed[20008] (Microsoft.EntityFrameworkCore.Database.Connection) 
+      Disposed connection to database '' on server '' (3ms).
